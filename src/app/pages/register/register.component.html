@@ -1,0 +1,133 @@
+<section>
+    <div class="w-75 mx-auto my-4 "  style="background-color: #F8F9FA">
+        <h1 class="text-primary-emphasis fs-2 p-2 fw-semibold text-center">Register Now</h1>
+       
+        <form [formGroup]="register" (ngSubmit)="registerSubmit()" class="p-3">
+            <div class="form-group">
+                <label class="text-primary-emphasis" for="username">Username</label>
+                <input formControlName="name"  type="text" class="form-control" name="username" id="username" aria-describedby="helpId" placeholder="">
+               @if (register.get('name')?.errors&&register.get('name')?.touched) {
+                @if (register.get('name')?.getError('required')) {
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        Name is Required
+                       </div>
+                }
+                @if (register.get('name')?.getError('minlength')) {
+                   
+                 <div class="alert alert-danger py-1 px-2" role="alert">
+                     Name Should be more than or equal  3 chars
+                   </div>
+                }
+                @if (register.get('name')?.getError('maxlength')) {
+                   
+                 <div class="alert alert-danger py-1 px-2" role="alert">
+                     Name Should be less than or equal  20 chars
+                   </div>
+                }
+               }
+                
+            </div>
+            <div class="form-group">
+
+                <label class="text-primary-emphasis" for="email">Email</label>
+                <input formControlName="email"  type="email" class="form-control" name="email" id="email" aria-describedby="helpId" placeholder="">
+                 
+                @if (register.get('email')?.errors&&register.get('email')?.touched) {
+
+                    @if (register.get('email')?.getError('required')) {
+                   
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        Email is Required
+                       </div>
+                    }
+                    @if (register.get('email')?.getError('email')) {
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        Enter a valid email!!
+                       </div>
+                    }
+                }
+               
+            </div>
+            <div class="form-group">
+                <label class="text-primary-emphasis" for="password">Password</label>
+                <input formControlName="password"  type="password" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="">
+                
+                @if (register.get('password')?.errors&&register.get('password')?.touched) {
+
+                    @if (register.get('password')?.getError('required')) {
+                   
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        password is Required
+                       </div>
+                    }
+                    @if (register.get('password')?.getError('pattern')) {
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        Enter a valid password!!
+                       </div>
+                    }
+                }
+               
+            </div>
+            <div class="form-group">
+                <label class="text-primary-emphasis" for="age">age</label>
+                <input formControlName="age"  type="number" class="form-control" name="age" id="age" aria-describedby="helpId" placeholder="">
+                
+                @if (register.get('age')?.errors&&register.get('age')?.touched) {
+
+                    @if (register.get('age')?.getError('required')) {
+                   
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        age is Required
+                       </div>
+                    }
+                    @if (register.get('age')?.getError('pattern')) {
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        Enter a valid age!!
+                       </div>
+                    }
+                }
+               
+            </div>
+            <div class="form-group">
+                <label class="text-primary-emphasis" for="phone">phone</label>
+                <input formControlName="phone"  type="tel" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="">
+                
+                @if (register.get('phone')?.errors&&register.get('phone')?.touched) {
+
+                    @if (register.get('phone')?.getError('required')) {
+                   
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        phone is Required
+                       </div>
+                    }
+                    @if (register.get('phone')?.getError('pattern')) {
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        Enter a valid phone!!
+                       </div>
+                    }
+                }
+               
+            </div>
+         
+            <button [disabled]="isLoad" type="submit" class="btn btn-primary mt-2">Sign Up
+                @if (isLoad) {
+                    <i class="fas fa-spinner fa-spin"></i>
+                }
+            </button>
+            @if (msgSuccess) {
+                <div class="alert alert-success py-2" role="alert">
+                    {{msgSuccess}}
+                  </div>
+    
+            }
+            @if (msgError) {
+                <div class="alert alert-danger py-2" role="alert">
+                    {{msgError}}
+                  </div>
+            }
+           
+              
+        </form>
+    </div>
+
+</section>

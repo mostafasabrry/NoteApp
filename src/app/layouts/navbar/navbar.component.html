@@ -1,0 +1,99 @@
+<nav
+    class="navbar navbar-expand-sm navbar-light "
+    
+    
+>
+    <div class="container">
+        <a class="navbar-brand fw-semibold" routerLink="/home" >Notify</a>
+        <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        @if (isLogin()) {
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/home" routerLinkActive="bg-primary text-white rounded">{{'home'|translate}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/notes" routerLinkActive="bg-primary text-white rounded">{{'notes'|translate}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/gallery" routerLinkActive="bg-primary text-white rounded">{{'gallary'|translate}}</a>
+                    </li>
+    
+                    <li class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            id="dropdownId"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            >{{'lang'|translate}}</a
+                        >
+                        <div
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownId"
+                        >
+                            <a class="dropdown-item" 
+                            (click)="change('en')"
+                                >en</a
+                            >
+                            <a class="dropdown-item" 
+                            (click)="change('ar')"
+                                >ar</a
+                            >
+                        </div>
+                    </li>
+                </ul>
+                     
+               <div class="d-flex justify-content-between align-items-center gap-3">
+                <div (click)="toggleTheme()">
+                    <i  class="fa-solid fa-moon fs-3"></i>
+                </div>
+                   
+                   <div>
+                    <button
+                    class="btn btn-outline-primary my-2 my-sm-0"
+                    type="submit"
+                    (click)="authService.signOut()"
+                >
+                {{'signout'|translate}}
+                </button>
+                   </div>
+
+               </div>
+               
+            </div>
+        }
+        @else if (!isLogin()) {
+          
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0 ">
+                
+                <li class="nav-item mx-1">
+                    <a class="nav-link" routerLink="/register" routerLinkActive="bg-primary text-white rounded">{{'register'|translate}}</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link" routerLink="/login" routerLinkActive="bg-primary text-white rounded">{{'login'|translate}}</a>
+                </li>
+                </ul>
+        </div>
+        }
+    
+
+
+
+       
+    </div>
+</nav>
+

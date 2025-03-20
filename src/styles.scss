@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+:root {
+    --bs-body-bg: #ffffff;
+    --bs-body-color: #000000;
+    .card{
+        background-color: #ffffff;
+        color: #1C1F2E;
+    }
+    .navbar{
+        background-color: #f8f9fa;
+    }
+    .footer{
+        background-color: #f8f9fa;
+        color: #1C1F2E;
+    }
+    .modal{
+        color: #1C1F2E;
+    }
+    
+  }
+  
+  [data-bs-theme="dark"] {
+    --bs-body-bg: #121826 ;
+    --bs-body-color: #E0E0E0 ;
+
+    .card{
+        background-color: #1E293B;
+        color: #ffffff;
+    }
+    .navbar{
+        background-color: #1C1F2E;
+    }
+    .footer{
+        background-color: #1C1F2E;
+        color: #ffffff;
+    }
+    .modal{
+        color: #ffffff;
+    }
+  }

@@ -1,0 +1,141 @@
+<section class="d-flex justify-content-center align-items-start min-vh-100 py-4">
+    <div class="container text-center ">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">
+            addNote<i class="fa-solid fa-plus  p-1"></i>
+        </button>
+
+        <div class="row mt-4 g-3">
+            @for (note of dataNotes(); track note._id) {
+                <div class="col-md-3">
+                    <div class="  card p-0 mb-3 border">
+                        <div class="card-body">
+                          <h5 class="card-title  fs-4 fw-semibold">{{note.title}}</h5>
+                          <p class="card-text  fw-medium fs-5">{{note.content}}</p>
+                          <div class="d-flex justify-content-between">
+                            <button (click)="setDataInUpdate(note,note._id)" type="button" data-bs-toggle="modal" data-bs-target="#updateModal" class="btn btn-outline-warning">
+                              Update
+                          </button>
+                              <button (click)="deleteNote(note._id)" type="button"  class="btn btn-outline-danger">
+                                Delete<i class="fa-solid fa-trash  p-1"></i>
+
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            }
+          
+        </div>
+    </div>
+     
+    <!--add not Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">New Note</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="noteForm" (ngSubmit)="submitNote()">
+
+                <div class="mb-3">
+                  <label for="title" class="col-form-label fw-medium">Title:</label>
+                  <input formControlName="title" type="text" class="form-control" id="title">
+
+                  @if (noteForm.get('title')?.errors&&noteForm.get('title')?.touched) {
+
+                    @if (noteForm.get('title')?.getError('required')) {
+                   
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        title is Required
+                       </div>
+                    }
+                }
+                </div>
+
+
+                <div class="mb-3">
+                  <label for="content" class="col-form-label  fw-medium">Content:</label>
+                  <textarea formControlName="content" class="form-control" id="content"></textarea>
+
+
+                  @if (noteForm.get('content')?.errors&&noteForm.get('content')?.touched) {
+
+                    @if (noteForm.get('content')?.getError('required')) {
+                   
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        content is Required
+                       </div>
+                    }
+                }
+                </div>
+
+                <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Send Note</button>
+              </form>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+         <!-- updatemodal -->
+      <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h1 class="modal-title fs-5  fw-semibold" id="updateModalLabel">Update Note</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="updateNoteForm" (ngSubmit)="submitUpdateNote()">
+
+                <div class="mb-3">
+                  <label for="title" class="col-form-label  fw-medium">Title:</label>
+                  <input formControlName="title" type="text" class="form-control" id="title">
+
+                  @if (updateNoteForm.get('title')?.errors&&updateNoteForm.get('title')?.touched) {
+
+                    @if (updateNoteForm.get('title')?.getError('required')) {
+                   
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        title is Required
+                       </div>
+                    }
+                }
+                </div>
+
+
+                <div class="mb-3">
+                  <label for="content" class="col-form-label fw-medium">Content:</label>
+                  <textarea formControlName="content" class="form-control" id="content"></textarea>
+
+
+                  @if (updateNoteForm.get('content')?.errors&&updateNoteForm.get('content')?.touched) {
+
+                    @if (updateNoteForm.get('content')?.getError('required')) {
+                   
+                    <div class="alert alert-danger py-1 px-2" role="alert">
+                        content is Required
+                       </div>
+                    }
+                }
+                </div>
+
+                <button type="submit" data-bs-dismiss="modal" class="btn btn-info">updata Note</button>
+              </form>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+
+
+
+</section>
